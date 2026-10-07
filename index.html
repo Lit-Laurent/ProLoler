@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Pro LoLer</title>
+		<link rel="icon" href="asol.jpeg" type="image/jpeg">
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<image src="asol.jpeg" width="64px" height="64px">
+			<h1>Pro Loler</h1>
+		</header>
+		
+		</br>
+		
+		<div class="links">
+			<div class="summonerStats">
+				<h2>Summoner Stats</h2>
+				<label for="trackerSite">Search on:</label>
+				<select id="trackerSite">
+					<option value="opgg">OP.GG</option>
+					<option value="dpm">DPM LoL</option>
+					<option value="leagueofgraphs">League of Graphs</option>
+				</select>
+
+				<ul id="accountLinks"></ul>
+
+				<script>
+					const accounts = [
+						{ label: "GANK ON CS #FIORA", id: "GANK ON CS-Fiora", region: "na" },
+						{ label: "THERE IS NO META #NA101", id: "THERE IS NO META-NA101", region: "na" },
+						{ label: "CN FIORA FAN #GOD", id: "CN FIORA FAN-GOD", region: "na" },
+						{ label: "Faker1 #666", id: "Faker 1-666", region: "na" },
+						{ label: "Super 新手 #Faker", id: "Super 新手-Faker", region: "na" }
+					];
+
+					const trackerSite = document.getElementById("trackerSite");
+					const accountLinks = document.getElementById("accountLinks");
+
+					function getAccountUrl(site, account) {
+						const id = encodeURIComponent(account.id);
+
+						if (site === "dpm") {
+							return `https://dpm.lol/${id}`;
+						}
+
+						if (site === "leagueofgraphs") {
+							return `https://www.leagueofgraphs.com/summoner/${account.region}/${id}`;
+						}
+
+						return `https://op.gg/lol/summoners/${account.region}/${id}`;
+					}
+
+					function updateAccountLinks() {
+						accountLinks.replaceChildren();
+
+						for (const account of accounts) {
+							const item = document.createElement("li");
+							const link = document.createElement("a");
+
+							link.href = getAccountUrl(trackerSite.value, account);
+							link.textContent = account.label;
+							link.target = "_blank";
+							link.rel = "noopener noreferrer";
+
+							item.appendChild(link);
+							accountLinks.appendChild(item);
+						}
+					}
+
+					trackerSite.addEventListener("change", updateAccountLinks);
+					updateAccountLinks();
+				</script>
+			</div>
+
+			<div class="wikis">
+				<h2>Wikis</h2>
+				<!-- Fix string augmentation with champions like Rek'Sai not being updated to reksai -->
+				<p>
+					<label for="champion">Champion:</label>
+					<input id="champion" type="text" value="Fiora" list="championNames">
+					<label for="vsChampion">vs.</label>
+					<input id="vsChampion" type="text" value="" list="championNames" title="Leave blank if you want non-matchup statisctics">
+					<a id="lolAlyticsLink" target="_blank" rel="noopener noreferrer">LoLAlytics</a>
+				</p>
+				
+				<ul>
+					<li><p><a id="wikiLink" target="_blank" rel="noopener noreferrer">Champion Wiki</a></p></li>
+					<li><p><a id="patchLink" target="_blank" rel="noopener noreferrer">Patch History</a></p></li>
+					<li><p><a id="mayhemLink" target="_blank" rel="noopener noreferrer">MetaSrc Mayhem</a></p></li>
+				</ul>
+			
+				<datalist id="championNames">
+					<option value="">
+					<option value="Aatrox">
+					<option value="Ahri">
+					<option value="Akali">
+					<option value="Akshan">
+					<option value="Alistar">
+					<option value="Ambessa">
+					<option value="Amumu">
+					<option value="Anivia">
+					<option value="Annie">
+					<option value="Aphelios">
+					<option value="Ashe">
+					<option value="Aurelion_Sol">
+					<option value="Aurora">
+					<option value="Azir">
+					<option value="Bard">
+					<option value="Bel'Veth">
+					<option value="Blitzcrank">
+					<option value="Brand">
+					<option value="Braum">
+					<option value="Briar">
+					<option value="Caitlyn">
+					<option value="Camille">
+					<option value="Cassiopeia">
+					<option value="Cho'Gath">
+					<option value="Corki">
+					<option value="Darius">
+					<option value="Diana">
+					<option value="Dr._Mundo">
+					<option value="Draven">
+					<option value="Ekko">
+					<option value="Elise">
+					<option value="Evelynn">
+					<option value="Ezreal">
+					<option value="Fiddlesticks">
+					<option value="Fiora">
+					<option value="Fizz">
+					<option value="Galio">
+					<option value="Gangplank">
+					<option value="Garen">
+					<option value="Gnar">
+					<option value="Gragas">
+					<option value="Graves">
+					<option value="Gwen">
+					<option value="Hecarim">
+					<option value="Heimerdinger">
+					<option value="Hwei">
+					<option value="Illaoi">
+					<option value="Irelia">
+					<option value="Ivern">
+					<option value="Janna">
+					<option value="Jarvan_IV">
+					<option value="Jax">
+					<option value="Jayce">
+					<option value="Jhin">
+					<option value="Jinx">
+					<option value="K'Sante">
+					<option value="Kai'Sa">
+					<option value="Kalista">
+					<option value="Karma">
+					<option value="Karthus">
+					<option value="Kassadin">
+					<option value="Katarina">
+					<option value="Kayle">
+					<option value="Kayn">
+					<option value="Kennen">
+					<option value="Kha'Zix">
+					<option value="Kindred">
+					<option value="Kled">
+					<option value="Kog'Maw">
+					<option value="LeBlanc">
+					<option value="Lee_Sin">
+					<option value="Leona">
+					<option value="Lillia">
+					<option value="Lissandra">
+					<option value="Locke">
+					<option value="Lucian">
+					<option value="Lulu">
+					<option value="Lux">
+					<option value="Malphite">
+					<option value="Malzahar">
+					<option value="Maokai">
+					<option value="Master_Yi">
+					<option value="Mel">
+					<option value="Milio">
+					<option value="Miss_Fortune">
+					<option value="Mordekaiser">
+					<option value="Morgana">
+					<option value="Naafiri">
+					<option value="Nami">
+					<option value="Nasus">
+					<option value="Nautilus">
+					<option value="Neeko">
+					<option value="Nidalee">
+					<option value="Nilah">
+					<option value="Nocturne">
+					<option value="Nunu_&amp;_Willump">
+					<option value="Olaf">
+					<option value="Orianna">
+					<option value="Ornn">
+					<option value="Pantheon">
+					<option value="Poppy">
+					<option value="Pyke">
+					<option value="Qiyana">
+					<option value="Quinn">
+					<option value="Rakan">
+					<option value="Rammus">
+					<option value="Rek'Sai">
+					<option value="Rell">
+					<option value="Renata_Glasc">
+					<option value="Renekton">
+					<option value="Rengar">
+					<option value="Riven">
+					<option value="Rumble">
+					<option value="Ryze">
+					<option value="Samira">
+					<option value="Sejuani">
+					<option value="Senna">
+					<option value="Seraphine">
+					<option value="Sett">
+					<option value="Shaco">
+					<option value="Shen">
+					<option value="Shyvana">
+					<option value="Singed">
+					<option value="Sion">
+					<option value="Sivir">
+					<option value="Skarner">
+					<option value="Smolder">
+					<option value="Sona">
+					<option value="Soraka">
+					<option value="Swain">
+					<option value="Sylas">
+					<option value="Syndra">
+					<option value="Tahm_Kench">
+					<option value="Taliyah">
+					<option value="Talon">
+					<option value="Taric">
+					<option value="Teemo">
+					<option value="Thresh">
+					<option value="Tristana">
+					<option value="Trundle">
+					<option value="Tryndamere">
+					<option value="Twisted_Fate">
+					<option value="Twitch">
+					<option value="Udyr">
+					<option value="Urgot">
+					<option value="Varus">
+					<option value="Vayne">
+					<option value="Veigar">
+					<option value="Vel'Koz">
+					<option value="Vex">
+					<option value="Vi">
+					<option value="Viego">
+					<option value="Viktor">
+					<option value="Vladimir">
+					<option value="Volibear">
+					<option value="Warwick">
+					<option value="Wukong">
+					<option value="Xayah">
+					<option value="Xerath">
+					<option value="Xin_Zhao">
+					<option value="Yasuo">
+					<option value="Yone">
+					<option value="Yorick">
+					<option value="Yunara">
+					<option value="Yuumi">
+					<option value="Zaahen">
+					<option value="Zac">
+					<option value="Zed">
+					<option value="Zeri">
+					<option value="Ziggs">
+					<option value="Zilean">
+					<option value="Zoe">
+					<option value="Zyra">
+				</datalist>
+				
+				<script>
+					const championInput = document.getElementById("champion");
+					const vsChampionInput = document.getElementById("vsChampion");
+
+					function updateLinks() {
+						const name = championInput.value.trim();
+						
+						const metaSrcSlug = encodeURIComponent(
+							name.toLowerCase().replace(/\./g, "").replace(/[\s_]+/g, "-")
+						);
+
+						const lolAlyticsSlug = encodeURIComponent(
+							name.toLowerCase().replace(/[\s_]+/g, "")
+						);
+						
+						const wikiName = encodeURIComponent(name.replace(/\s+/g, "_"));
+						
+						const vsChampion = vsChampionInput.value.trim();
+						const vsChampSlug = encodeURIComponent(
+							vsChampion.toLowerCase().replace(/[\s_]+/g, "")
+						);
+
+						document.getElementById("wikiLink").href =
+							`https://wiki.leagueoflegends.com/en-us/${wikiName}`;
+
+						document.getElementById("patchLink").href =
+							`https://wiki.leagueoflegends.com/en-us/${wikiName}/Patch_history`;
+							
+						document.getElementById("lolAlyticsLink").href = vsChampion
+							? `https://lolalytics.com/lol/${lolAlyticsSlug}/vs/${vsChampSlug}/build/`
+							: `https://lolalytics.com/lol/${lolAlyticsSlug}/build/`;
+
+						document.getElementById("mayhemLink").href =
+							`https://www.metasrc.com/lol/mayhem/champions/${metaSrcSlug}/build`;
+					}
+
+					championInput.addEventListener("input", updateLinks);
+					vsChampionInput.addEventListener("input", updateLinks);
+					updateLinks();
+				</script>
+			</div>
+		</div>
+	</body>
+</html>
